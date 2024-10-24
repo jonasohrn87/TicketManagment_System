@@ -4,6 +4,7 @@ using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Data.migrations
 {
     [DbContext(typeof(AppDBContext))]
-    partial class AppDBContextModelSnapshot : ModelSnapshot
+    [Migration("20241022151142_Seed")]
+    partial class Seed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -224,9 +227,6 @@ namespace Infrastructure.Data.migrations
                     b.Property<int>("PriorityId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("PriorityId1")
-                        .HasColumnType("int");
-
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
@@ -249,8 +249,6 @@ namespace Infrastructure.Data.migrations
                     b.HasIndex("AssignedToId");
 
                     b.HasIndex("PriorityId");
-
-                    b.HasIndex("PriorityId1");
 
                     b.HasIndex("ProductId");
 
@@ -1117,15 +1115,15 @@ namespace Infrastructure.Data.migrations
                             Id = "62f94fe7-0580-42df-969c-50d4165d63b9",
                             AccessFailedCount = 0,
                             AccountConfirmed = false,
-                            ConcurrencyStamp = "d4386da6-2c10-4bad-8790-b7d28fa6ae35",
+                            ConcurrencyStamp = "65d1a9e8-75db-4a14-b831-60be3b6cb83e",
                             Email = "Test@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "TEST@GMAIL.COM",
                             NormalizedUserName = "TEST@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEL++tlyujCvsWk/G1OenIYfNO4yafkztBDgXbmjhJbqC1GlVhXmmWwvhh7H27vcyog==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEQPixmAMeJLOQP0Ms//LE9y4YJdKW6VL9GsVwTSCr4C6S8v2lywuDfvcRCIX81EVw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "5447ffda-6e31-4f3e-b7cb-4b96a3628d10",
+                            SecurityStamp = "8053cec2-807d-4141-be79-1ba87126973a",
                             TwoFactorEnabled = false,
                             UserName = "Test@gmail.com"
                         });
@@ -1304,15 +1302,11 @@ namespace Infrastructure.Data.migrations
                         .WithMany()
                         .HasForeignKey("AssignedToId");
 
-                    b.HasOne("Domain.Entities.Category", "Category")
+                    b.HasOne("Domain.Entities.Priority", "Priority")
                         .WithMany()
                         .HasForeignKey("PriorityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("Domain.Entities.Priority", "Priority")
-                        .WithMany()
-                        .HasForeignKey("PriorityId1");
 
                     b.HasOne("Domain.Entities.Product", "Product")
                         .WithMany()
@@ -1326,8 +1320,6 @@ namespace Infrastructure.Data.migrations
                         .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("AssignedTo");
-
-                    b.Navigation("Category");
 
                     b.Navigation("Priority");
 

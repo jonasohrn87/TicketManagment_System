@@ -1,4 +1,5 @@
 ﻿using Domain.Repository;
+using Infrastructure.Data;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,13 +7,13 @@ namespace Infrastructure.Repository
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        internal readonly IdentityDbContext dbContext;
+        internal readonly AppDBContext dbContext;
 
-        public GenericRepository(IdentityDbContext dbContext)
+        public GenericRepository(AppDBContext dbContext)
         {
             this.dbContext = dbContext;
         }
-        public T getByIdAsync(int id)
+        public T GetByIdAsync(int id)
         {
             return dbContext.Set<T>().Find(id);
         }

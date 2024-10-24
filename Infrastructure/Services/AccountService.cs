@@ -5,14 +5,14 @@ using Microsoft.AspNetCore.Identity;
 using Domain.Entities;
 using Infrastructure.Common;
 
-namespace Infrastructure.Data.Services
+namespace Infrastructure.Services
 {
     public class AccountService : IAccountService
     {
         private readonly SignInManager<User> signInmanager;
-        public AccountService(SignInManager<User> signInManager) 
+        public AccountService(SignInManager<User> signInManager)
         {
-            this.signInmanager = signInManager;
+            signInmanager = signInManager;
         }
         public async Task<BaseResponse> RegisterUser(RegisterUserRequest request)
         {
@@ -37,7 +37,7 @@ namespace Infrastructure.Data.Services
             BaseResponse<string> response = new();
 
             var user = await signInmanager.UserManager.FindByEmailAsync(email);
-            if (user == null) 
+            if (user == null)
             {
                 response.ErrorMessage = "User not found!";
                 response.IsSuccess = false;

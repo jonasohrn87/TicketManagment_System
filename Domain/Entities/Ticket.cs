@@ -21,10 +21,10 @@ namespace Domain.Entities
         public string? Description { get; set; }
         public DateTime RaisedDate { get; set; }
         public DateTime ExpectedDate { get; set; }
-        public string AssignedToId { get; set; }
+        public string? AssignedToId { get; set; }
         [ForeignKey(nameof(AssignedToId))]
         public User? AssignedTo { get; set; }
-        public string RaisedBy { get; set; }
+        public string? RaisedBy { get; set; }
         [ForeignKey(nameof(RaisedBy))]
         public User? User { get; set; }
         public int ProductId { get; set; }
@@ -33,6 +33,7 @@ namespace Domain.Entities
         public int CategoryId { get; set; }
         public int PriorityId { get; set; }
         [ForeignKey(nameof(PriorityId))]
+        public Category Category { get; set; }
         public Priority Priority {  get; set; }
         public string Status { get; set; }
         public virtual ICollection<Attachment> Attachments { get; set; }
