@@ -22,7 +22,7 @@ namespace Infrastructure.Services
             return unitOfWork.Repository<Category>().ListAll();
         }
 
-        public List<Priority> GetPriority()
+        public List<Priority> GetPriorities()
         {
             return unitOfWork.Repository<Priority>().ListAll();
         }

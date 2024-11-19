@@ -7,5 +7,6 @@ namespace Domain.Interfaces
     {
         Task<BaseResponse<string>> VerifyUser(string username, string password);
         Task<BaseResponse> RegisterUser(RegisterUserRequest request);
+        List<GetUserResponse> GetUsers();
     }
 }

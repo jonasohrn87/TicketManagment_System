@@ -11,7 +11,7 @@ namespace Domain.Interfaces
     {
         List<Category> GetCategories();
         List<Product> GetProducts();
-        List<Priority> GetPriority();
+        List<Priority> GetPriorities();
         List<string> GetStatus();
     }
 }
